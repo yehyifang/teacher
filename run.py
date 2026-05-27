@@ -286,10 +286,28 @@ class TeachingHandler(SimpleHTTPRequestHandler):
             self.send_sse("error", {"message": str(error) or "伺服器處理聊天時發生錯誤。"})
 
 
-if __name__ == "__main__":
+def is_running_in_streamlit():
+    try:
+        from streamlit.runtime.scriptrunner import get_script_run_ctx
+
+        return get_script_run_ctx() is not None
+    except Exception:
+        return False
+
+
+def run_http_server():
     server = ThreadingHTTPServer(("0.0.0.0", PORT), TeachingHandler)
     print(f"多角色教學輔助系統 running at http://localhost:{PORT}")
     print(f"Gemini model: {GEMINI_MODEL}")
     if not GEMINI_API_KEY:
         print("提醒：尚未設定 GEMINI_API_KEY，聊天 API 會回傳設定提示。")
     server.serve_forever()
+
+
+if __name__ == "__main__":
+    if is_running_in_streamlit():
+        from streamlit_app import main as streamlit_main
+
+        streamlit_main()
+    else:
+        run_http_server()
