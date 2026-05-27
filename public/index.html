@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>多角色教學輔助系統</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">教</div>
+          <div>
+            <h1>多角色教學輔助系統</h1>
+            <p>Gemini 即時教學助理</p>
+          </div>
+        </div>
+
+        <section class="panel">
+          <h2>教學角色</h2>
+          <div class="role-list" role="radiogroup" aria-label="選擇教學角色">
+            <button class="role-card is-active" data-role="strict_teacher" role="radio" aria-checked="true">
+              <strong>老師（嚴格）</strong>
+              <span>直接指出問題，要求完整步驟。</span>
+            </button>
+            <button class="role-card" data-role="guided_tutor" role="radio" aria-checked="false">
+              <strong>家教老師（引導）</strong>
+              <span>用提示和問題陪你推理。</span>
+            </button>
+            <button class="role-card" data-role="relaxed_counselor" role="radio" aria-checked="false">
+              <strong>課後輔導員（輕鬆）</strong>
+              <span>生活化說明，降低壓力。</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>服務狀態</h2>
+          <div class="status-row">
+            <span id="statusDot" class="status-dot"></span>
+            <span id="statusText">檢查中</span>
+          </div>
+        </section>
+      </aside>
+
+      <section class="chat-area">
+        <header class="chat-header">
+          <div>
+            <p>目前角色</p>
+            <h2 id="activeRoleName">老師（嚴格）</h2>
+          </div>
+          <button id="clearButton" class="icon-button" type="button" title="清除對話" aria-label="清除對話">↺</button>
+        </header>
+
+        <div id="messages" class="messages" aria-live="polite"></div>
+
+        <form id="chatForm" class="composer">
+          <textarea
+            id="promptInput"
+            rows="2"
+            placeholder="輸入你想學的內容，例如：請用引導方式教我二次函數配方法"
+            required
+          ></textarea>
+          <button id="sendButton" type="submit">送出</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

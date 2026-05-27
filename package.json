@@ -1,0 +1,20 @@
+{
+  "name": "multi-role-teaching-assistant",
+  "version": "1.0.0",
+  "description": "多角色教學輔助系統 - Gemini API + SSE streaming chat",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "gemini",
+    "sse",
+    "teaching",
+    "chatbot"
+  ],
+  "license": "MIT"
+}
